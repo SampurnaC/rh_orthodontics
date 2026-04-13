@@ -1,39 +1,56 @@
-<h2>Book Appointment</h2>
+<%= render "shared/navbar" %>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
 
-<%= form_with model: @appointment do |f| %>
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
 
-  <% unless user_signed_in? %>
-    <div class="mb-3">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+          <h3 class="text-center fw-bold mb-3">
+            Book Your Appointment
+          </h3>
+          <p class="text-center text-muted mb-4">
+            Quick and easy booking with Redhead Orthodontics
+          </p>
+          <%= form_with model: @appointment do |f| %>
+            <% unless user_signed_in? %>
+              <div class="mb-3">
+                <%= f.label :name, class: "form-label fw-semibold" %>
+                <%= f.text_field :name, class: "form-control form-control-lg", placeholder: "Full Name" %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :email, class: "form-label fw-semibold" %>
+                <%= f.email_field :email, class: "form-control form-control-lg", placeholder: "Email Address" %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :phone, class: "form-label fw-semibold" %>
+                <%= f.telephone_field :phone, class: "form-control form-control-lg", placeholder: "Phone Number" %>
+              </div>
+            <% end %>
+
+            <div class="mb-3">
+              <%= f.label :message, "Message", class: "form-label fw-semibold" %>
+              <%= f.text_area :message, class: "form-control", rows: 4, placeholder: "Any additional information..." %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "Book Appointment", class: "btn btn-warning btn-lg fw-bold" %>
+            </div>
+
+          <% end %>
+
+          <% unless user_signed_in? %>
+            <p class="text-center mt-3 mb-0 small">
+              Already have an account?
+              <%= link_to "Login here", new_user_session_path, class: "text-warning fw-semibold" %>
+            </p>
+          <% end %>
+
+        </div>
+      </div>
+
     </div>
-
-    <div class="mb-3">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: "form-control" %>
-    </div>
-
-    <div class="mb-3">
-      <%= f.label :phone %>
-      <%= f.telephone_field :phone, class: "form-control" %>
-    </div>
-  <% end %>
-
-  <div class="mb-3">
-    <%= f.label :date %>
-    <%= f.date_field :date, class: "form-control" %>
   </div>
-
-  <div class="mb-3">
-    <%= f.label :time %>
-    <%= f.time_field :time, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= f.label :notes %>
-    <%= f.text_area :notes, class: "form-control" %>
-  </div>
-
-  <%= f.submit "Book Appointment", class: "btn btn-warning" %>
-
-<% end %>
+</div>
