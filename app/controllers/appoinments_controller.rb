@@ -1,0 +1,3 @@
+class AppoinmentsController < ApplicationController
+  
+end
