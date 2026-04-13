@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   enum :role, {patient:0, admin: 1}
   after_initialize :set_default_role, if: :new_record?
-
+  has_many :appointments, dependent: :destroy
+  
   private
 
   def set_default_role
