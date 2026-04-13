@@ -5,7 +5,7 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @appointment=Appoinment.new(appoinment_params)
+    @appointment=Appointment.new(appointment_params)
     @appointment.user=current_user if user_signed_in?
     if @appointment.save
       redirect_to root_path, notice: "Appointment successfully created"
@@ -16,7 +16,7 @@ class AppointmentsController < ApplicationController
 
   private
   def appointment_params
-    params.require(:appointment).permit(:date, :time, :name, :email, :phone, :message)    
+    params.require(:appointment).permit(:name, :email, :phone, :message)    
   end
 
 end
