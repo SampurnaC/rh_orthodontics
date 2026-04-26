@@ -109,6 +109,9 @@ GEM
       responders
       warden (~> 1.2.3)
     dotenv (3.2.0)
+    dotenv-rails (3.2.0)
+      dotenv (= 3.2.0)
+      railties (>= 6.1)
     drb (2.2.3)
     ed25519 (1.4.0)
     erb (6.0.2)
@@ -320,6 +323,9 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.2.0)
+    stripe (19.1.0)
+      bigdecimal
+      logger
     thor (1.5.0)
     thruster (0.1.20-x86_64-linux)
     timeout (0.6.1)
@@ -358,6 +364,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  dotenv-rails
   importmap-rails
   jbuilder
   kamal
@@ -371,6 +378,7 @@ DEPENDENCIES
   solid_cache
   solid_queue
   stimulus-rails
+  stripe
   thruster
   turbo-rails
   tzinfo-data
