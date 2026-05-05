@@ -21,6 +21,15 @@ class PaymentsController < ApplicationController
     redirect_to @session.url, allow_other_host: true
   end
 
-  
+  def success
+    @appointment = Appointment.find(params[:appointment_id])
+    @appointment.update(payment_status: "paid")
+
+    redirect_to root_path, notice: "Payment successful!"
+  end
+
+  def cancel
+    redirect_to root_path, alert: "Payment cancelled."
+  end
 
 end
