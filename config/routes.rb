@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
   resources :appointments, only: [:new, :create, :show] do
-    resource :payment, only: [:create]
+    resource :payments, only: [:create] do
+      get :success
+      get :cancel
+    end
   end
-  get "/payment/success", to: "payments#success"
-  get "/payment/cancel", to: "payments#cancel"
 end
