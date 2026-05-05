@@ -1,8 +1,24 @@
-<% if @appointment.payment_status == "pending" %>
-  <%= button_to "Pay Deposit (£20)",
-      appointment_payments_path(@appointment),
-      method: :post,
-      data: { turbo: false } %>
-<% else %>
-  <p>Paid</p>
-<% end %>
+<div class="mt-4 p-4 border rounded-3 shadow-sm bg-light text-center">
+
+  <% if @appointment.payment_status == "pending" %>
+
+    <p class="mb-3 text-muted">
+      To confirm your appointment, please complete the £20 deposit.
+    </p>
+
+    <%= button_to "Secure Appointment – Pay £20",
+        appointment_payments_path(@appointment),
+        method: :post,
+        data: { turbo: false },
+        class: "btn btn-warning btn-lg w-100 fw-semibold shadow-sm rounded-3" %>
+
+  <% else %>
+
+    <div class="text-success fw-semibold">
+      Payment received<br>
+      Your appointment is confirmed
+    </div>
+
+  <% end %>
+
+</div>
