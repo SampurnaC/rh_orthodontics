@@ -12,5 +12,11 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
-  resources :appointments
+  resources :appointments, only: [:new, :create, :show] do
+    resource :payments, only: [:create] do
+      get :success
+      get :cancel
+    end
+  end
+  post "/webhooks/stripe", to: "webhooks#stripe"
 end

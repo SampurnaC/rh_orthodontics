@@ -95,6 +95,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    coderay (1.1.3)
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
     crass (1.0.6)
@@ -109,6 +110,9 @@ GEM
       responders
       warden (~> 1.2.3)
     dotenv (3.2.0)
+    dotenv-rails (3.2.0)
+      dotenv (= 3.2.0)
+      railties (>= 6.1)
     drb (2.2.3)
     ed25519 (1.4.0)
     erb (6.0.2)
@@ -161,6 +165,7 @@ GEM
       net-smtp
     marcel (1.1.0)
     matrix (0.4.3)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (6.0.3)
       drb (~> 2.0)
@@ -198,6 +203,9 @@ GEM
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
+    pry (0.15.2)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     psych (5.3.1)
       date
       stringio
@@ -320,6 +328,9 @@ GEM
     stimulus-rails (1.3.4)
       railties (>= 6.0.0)
     stringio (3.2.0)
+    stripe (19.1.0)
+      bigdecimal
+      logger
     thor (1.5.0)
     thruster (0.1.20-x86_64-linux)
     timeout (0.6.1)
@@ -358,11 +369,13 @@ DEPENDENCIES
   capybara
   debug
   devise
+  dotenv-rails
   importmap-rails
   jbuilder
   kamal
   pg (~> 1.1)
   propshaft
+  pry (~> 0.15.0)
   puma (>= 5.0)
   rails (~> 8.0.5)
   rubocop-rails-omakase
@@ -371,6 +384,7 @@ DEPENDENCIES
   solid_cache
   solid_queue
   stimulus-rails
+  stripe
   thruster
   turbo-rails
   tzinfo-data

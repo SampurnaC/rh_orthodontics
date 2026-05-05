@@ -19,19 +19,11 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= f.label :date %>
-    <%= f.date_field :date, class: "form-control" %>
-  </div>
+ 
 
   <div class="mb-3">
-    <%= f.label :time %>
-    <%= f.time_field :time, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= f.label :notes %>
-    <%= f.text_area :notes, class: "form-control" %>
+    <%= f.label :message %>
+    <%= f.text_area :message, class: "form-control" %>
   </div>
 
   <%= f.submit "Book Appointment", class: "btn btn-warning" %>

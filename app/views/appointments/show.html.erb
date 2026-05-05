@@ -1,0 +1,8 @@
+<% if @appointment.payment_status == "pending" %>
+  <%= button_to "Pay Deposit (£20)",
+      appointment_payments_path(@appointment),
+      method: :post,
+      data: { turbo: false } %>
+<% else %>
+  <p>Paid</p>
+<% end %>
