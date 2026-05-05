@@ -18,4 +18,5 @@ Rails.application.routes.draw do
       get :cancel
     end
   end
+  post "/webhooks/stripe", to: "webhooks#stripe"
 end
