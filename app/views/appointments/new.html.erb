@@ -1,44 +1,71 @@
-<div class="container mt-5">
+<div class="container py-5">
   <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-8">
+    <div class="col-md-7 col-lg-6">
 
-      <h2 class="mb-4 text-center">Book Your Appointment</h2>
+      <div class="card shadow border-0 rounded-4">
+        <div class="card-body p-4">
 
-      <%= form_with model: @appointment, class: "card p-4 shadow-sm" do |f| %>
+          <h2 class="text-center mb-4 fw-bold">
+            Book Appointment
+          </h2>
 
-        <% unless user_signed_in? %>
-          <div class="mb-3">
-            <%= f.label :name, "Full Name", class: "form-label" %>
-            <%= f.text_field :name, class: "form-control", placeholder: "Enter your full name", required: true %>
-          </div>
+          <%= form_with model: @appointment do |f| %>
 
-          <div class="mb-3">
-            <%= f.label :email, "Email Address", class: "form-label" %>
-            <%= f.email_field :email, class: "form-control", placeholder: "you@example.com", required: true %>
-          </div>
+            <% unless user_signed_in? %>
 
-          <div class="mb-3">
-            <%= f.label :phone, "Phone Number", class: "form-label" %>
-            <%= f.telephone_field :phone, class: "form-control", placeholder: "e.g. 07123 456789", required: true %>
-          </div>
-        <% end %>
+              <div class="mb-3">
+                <%= f.label :name, class: "form-label fw-semibold" %>
+                <%= f.text_field :name,
+                    class: "form-control form-control-lg",
+                    placeholder: "Enter your full name" %>
+              </div>
 
-        <div class="mb-3">
-          <%= f.label :message, "Reason for Appointment", class: "form-label" %>
-          <%= f.text_area :message, class: "form-control", rows: 4, placeholder: "Briefly describe your concern..." %>
+              <div class="mb-3">
+                <%= f.label :email, class: "form-label fw-semibold" %>
+                <%= f.email_field :email,
+                    class: "form-control form-control-lg",
+                    placeholder: "Enter your email" %>
+              </div>
+
+              <div class="mb-3">
+                <%= f.label :phone, class: "form-label fw-semibold" %>
+                <%= f.telephone_field :phone,
+                    class: "form-control form-control-lg",
+                    placeholder: "Enter your phone number" %>
+              </div>
+
+            <% end %>
+
+            <div class="mb-3">
+              <%= f.label :slot_id, "Select Date & Time",
+                  class: "form-label fw-semibold" %>
+
+              <%= f.collection_select :slot_id,
+                  @slots,
+                  :id,
+                  :start_time,
+                  { prompt: "Choose a slot" },
+                  { class: "form-select form-select-lg" } %>
+            </div>
+
+            <div class="mb-4">
+              <%= f.label :message, class: "form-label fw-semibold" %>
+
+              <%= f.text_area :message,
+                  class: "form-control",
+                  rows: 4,
+                  placeholder: "Write your message here..." %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "Book Appointment",
+                  class: "btn btn-warning btn-lg fw-semibold rounded-3" %>
+            </div>
+
+          <% end %>
+
         </div>
-
-        <div class="mb-3 text-muted small text-center">
-          A £20 deposit is required to secure your appointment. This amount will be deducted from your treatment cost during your visit.
-        </div>
-
-        <div class="d-grid">
-          <%= f.submit "Continue to Payment (£20)",
-              class: "btn btn-warning btn-lg",
-              data: { disable_with: "Processing..." } %>
-        </div>
-
-      <% end %>
+      </div>
 
     </div>
   </div>
