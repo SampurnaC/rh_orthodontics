@@ -1,6 +1,7 @@
 class AppointmentsController < ApplicationController
   
   def new
+    @slots=Slot.available
     @appointment=Appointment.new
   end
 
@@ -8,9 +9,11 @@ class AppointmentsController < ApplicationController
     @appointment=Appointment.new(appointment_params)
     @appointment.user=current_user if user_signed_in?
     if @appointment.save
-      redirect_to @appointment, notice: "Appointment successfully created"
+      @appointment.slot.update(available: false)
+      redirect_to @appointment, notice: "Appointment successfully booked!"
     else
-      render :new
+      @slots=Slot.available
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -20,7 +23,7 @@ class AppointmentsController < ApplicationController
 
   private
   def appointment_params
-    params.require(:appointment).permit(:name, :email, :phone, :message)    
+    params.require(:appointment).permit(:name, :email, :phone, :message, :slot_id)    
   end
 
 end
