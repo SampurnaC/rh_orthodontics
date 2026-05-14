@@ -21,6 +21,7 @@ class Admin::SlotsController < ApplicationController
   end
 
   def edit
+    @slot=Slot.find(params[:id])
   end
 
   def update
