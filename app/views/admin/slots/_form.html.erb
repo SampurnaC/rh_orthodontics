@@ -1,0 +1,20 @@
+<%= form_with model: [:admin, @slot] do |f| %>
+
+  <div class="mb-3">
+    <%= f.label :start_time, class: "form-label" %>
+
+    <%= f.datetime_local_field :start_time,
+        class: "form-control" %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= f.check_box :available,
+        class: "form-check-input" %>
+
+    <%= f.label :available,
+        class: "form-check-label" %>
+  </div>
+
+  <%= f.submit class: "btn btn-warning" %>
+
+<% end %>

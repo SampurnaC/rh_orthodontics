@@ -43,7 +43,7 @@
               <%= f.collection_select :slot_id,
                   @slots,
                   :id,
-                  :start_time,
+                  :formatted_time,
                   { prompt: "Choose a slot" },
                   { class: "form-select form-select-lg" } %>
             </div>
