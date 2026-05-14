@@ -24,6 +24,12 @@ class Admin::SlotsController < ApplicationController
   end
 
   def update
+    @slot=Slot.find(params[:id])
+    if @slot.update(slot_params)
+      redirect_to admin_slots_path, notice: "Slot successfully updated!"
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
