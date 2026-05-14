@@ -7,8 +7,6 @@ class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
   has_many :appointments, dependent: :destroy
   
-  private
-
   def set_default_role
     self.role ||= :patient
   end
