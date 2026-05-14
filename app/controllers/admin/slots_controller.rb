@@ -44,4 +44,8 @@ class Admin::SlotsController < ApplicationController
     redirect_to root_path, alert: "Not authorized" unless current_user.admin?
   end
 
+  def slot_params
+    params.require(:slot).permit(:start_time, :available)
+  end
+
 end
