@@ -1,0 +1,78 @@
+<div class="container mt-5" style="max-width: 700px;">
+
+  <div class="card shadow-sm border-0 rounded-4">
+    
+    <div class="card-body p-4">
+
+      <h2 class="mb-4 fw-bold text-center">
+        Bulk Create Slots
+      </h2>
+
+      <%= form_with url: bulk_create_admin_slots_path,
+                    method: :post,
+                    local: true do %>
+
+        <div class="mb-4">
+          <%= label_tag :start_date,
+              "Start Date",
+              class: "form-label fw-semibold" %>
+
+          <%= date_field_tag :start_date,
+              nil,
+              class: "form-control form-control-lg rounded-3" %>
+        </div>
+
+        <div class="mb-4">
+          <%= label_tag :end_date,
+              "End Date",
+              class: "form-label fw-semibold" %>
+
+          <%= date_field_tag :end_date,
+              nil,
+              class: "form-control form-control-lg rounded-3" %>
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-6 mb-4">
+            <%= label_tag :daily_start_time,
+                "Start Time",
+                class: "form-label fw-semibold" %>
+
+            <%= time_field_tag :daily_start_time,
+                nil,
+                class: "form-control form-control-lg rounded-3" %>
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <%= label_tag :daily_end_time,
+                "End Time",
+                class: "form-label fw-semibold" %>
+
+            <%= time_field_tag :daily_end_time,
+                nil,
+                class: "form-control form-control-lg rounded-3" %>
+          </div>
+
+        </div>
+
+        <div class="mb-4">
+          <%= label_tag :interval,
+              "Interval (minutes)",
+              class: "form-label fw-semibold" %>
+
+          <%= number_field_tag :interval,
+              30,
+              class: "form-control form-control-lg rounded-3" %>
+        </div>
+
+        <div class="d-grid">
+          <%= submit_tag "Generate Slots",
+              class: "btn btn-primary btn-lg rounded-3 fw-semibold" %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
