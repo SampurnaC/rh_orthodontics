@@ -21,6 +21,11 @@ Rails.application.routes.draw do
   post "/webhooks/stripe", to: "webhooks#stripe"
 
   namespace :admin do
-    resources :slots
+    resources :slots do
+      collection do
+        get :bulk_new
+        post :bulk_create
+      end
+    end
   end
 end
