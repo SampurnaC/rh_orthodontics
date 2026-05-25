@@ -3,7 +3,7 @@ class Admin::AppointmentsController < ApplicationController
   before_action :require_admin
 
   def index
-    @appointments=Appointment.all.where(payment_status: "paid").order(created_at: :desc)
+    @appointments=Appointment.includes(:user, :slot).where(payment_status: "paid").order(created_at: :desc)
   end
   
   private
