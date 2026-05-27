@@ -1,0 +1,18 @@
+<h2>New Appointment Booked</h2>
+
+<p>
+  A customer has booked and paid for an appointment.
+</p>
+
+<p>
+  Name: <%= @appointment.name %>
+</p>
+
+<p>
+  Email: <%= @appointment.email %>
+</p>
+
+
+<p>
+  Time: <%= @appointment.slot.start_time.strftime("%I:%M %p") %>
+</p>
