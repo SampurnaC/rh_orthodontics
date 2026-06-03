@@ -10,7 +10,7 @@ class AppointmentsController < ApplicationController
     @appointment.user=current_user if user_signed_in?
     if @appointment.save
       @appointment.slot.update(available: false)
-      redirect_to @appointment, notice: "Appointment successfully booked!"
+      redirect_to @appointment
     else
       @slots=Slot.available
       render :new, status: :unprocessable_entity
