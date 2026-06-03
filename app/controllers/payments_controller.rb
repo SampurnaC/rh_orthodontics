@@ -24,6 +24,7 @@ class PaymentsController < ApplicationController
   def success
     @appointment = Appointment.find(params[:appointment_id])
     @appointment.update(payment_status: "paid")
+    AdminMailer.new_booking(@appointment).deliver_now
 
     redirect_to root_path, notice: "Payment successful!"
   end
