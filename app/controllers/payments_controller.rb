@@ -26,7 +26,7 @@ class PaymentsController < ApplicationController
     @appointment.update(payment_status: "paid")
     AdminMailer.new_booking(@appointment).deliver_now
 
-    redirect_to root_path, notice: "Payment successful!"
+    redirect_to root_path, notice: "Payment successful! Your appointment has been booked successfully."
   end
 
   def cancel
