@@ -1,63 +1,121 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
   <div class="container">
 
-    <%= link_to "Redhead Orthodontics", root_path, class: "navbar-brand fw-bold text-warning" %>
+    <%= link_to "Redhead Orthodontics",
+        root_path,
+        class: "navbar-brand fw-bold text-warning" %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#nav">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="nav">
-      <% if current_page?(root_path) %>  
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+      <% if current_user&.admin? %>
+
+        <ul class="navbar-nav me-auto">
 
           <li class="nav-item">
-            <a class="nav-link text-white" href="#treatments">Treatments</a>
+            <%= link_to "Appointments",
+                admin_appointments_path,
+                class: "nav-link text-white" %>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-white" href="#why">Why Us</a>
+            <%= link_to "Slots",
+                admin_slots_path,
+                class: "nav-link text-white" %>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link text-white" href="#team">Team</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link text-white" href="#reviews">Reviews</a>
+            <%= link_to "Bulk Create",
+                bulk_new_admin_slots_path,
+                class: "nav-link text-warning fw-bold" %>
           </li>
 
         </ul>
-      <% end %>  
+
+      <% else %>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+            <%= link_to "Blog",
+                blog_path,
+                class: "nav-link text-white" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Braces",
+                braces_path,
+                class: "nav-link text-white" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Treatments",
+                treatments_path,
+                class: "nav-link text-white" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Promise",
+                promise_path,
+                class: "nav-link text-white" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Results",
+                results_path,
+                class: "nav-link text-white" %>
+          </li>
+
+        </ul>
+
+      <% end %>
 
       <ul class="navbar-nav align-items-lg-center">
 
         <% if user_signed_in? %>
+
           <li class="nav-item me-3 text-white small">
-            Welcome, <strong><%= current_user.email %></strong>
+            Welcome,
+            <strong><%= current_user.email %></strong>
             (<%= current_user.role %>)
           </li>
 
           <li class="nav-item">
             <%= link_to "Logout",
-              destroy_user_session_path,
-              data: { turbo_method: :delete },
-              class: "btn btn-outline-light btn-sm me-2" %>
+                destroy_user_session_path,
+                data: { turbo_method: :delete },
+                class: "btn btn-outline-light btn-sm me-2" %>
           </li>
 
         <% else %>
+
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-light btn-sm me-2" %>
+            <%= link_to "Login",
+                new_user_session_path,
+                class: "btn btn-outline-light btn-sm me-2" %>
           </li>
 
           <li class="nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-warning btn-sm" %>
+            <%= link_to "Sign up",
+                new_user_registration_path,
+                class: "btn btn-warning btn-sm" %>
           </li>
+
         <% end %>
 
-        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
-          <%= link_to "Book Appointment", root_path, class: "btn btn-warning fw-bold" %>
-        </li>
+        <% unless current_user&.admin? %>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <%= link_to "Book Appointment",
+                root_path,
+                class: "btn btn-warning fw-bold" %>
+          </li>
+        <% end %>
 
       </ul>
 
