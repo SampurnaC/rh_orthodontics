@@ -12,6 +12,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  get "/blog", to: "pages#blog"
+  get "/braces", to: "pages#braces"
+  get "/promise", to: "pages#promise"
+  get "/results", to: "pages#results"
+  
   resources :appointments, only: [:new, :create, :show] do
     resource :payments, only: [:create] do
       get :success
@@ -21,6 +27,7 @@ Rails.application.routes.draw do
   post "/webhooks/stripe", to: "webhooks#stripe"
 
   namespace :admin do
+    resources :appointments
     resources :slots do
       collection do
         get :bulk_new
