@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   get "/braces", to: "pages#braces"
   get "/promise", to: "pages#promise"
   get "/results", to: "pages#results"
-  
+
+  resources :treatments, only: [:index, :show]
+
   resources :appointments, only: [:new, :create, :show] do
     resource :payments, only: [:create] do
       get :success
